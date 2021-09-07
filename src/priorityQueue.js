@@ -20,31 +20,28 @@ export class PriorityQueue {
     // to the queue as per priority
     enqueue(element, priority)
     {
-        if(element !== null || element !== undefined ||
-            element.length > 0){
-            // creating object from queue element
-            let qElement = new QElement(element, priority);
-            let contain = false;
-        
-            // iterating through the entire
-            // item array to add element at the
-            // correct location of the Queue
-            for (let i = 0; i < this.items.length; i++) {
-                if (this.items[i].priority > qElement.priority) {
-                    // Once the correct location is found it is
-                    // enqueued
-                    this.items.splice(i, 0, qElement);
-                    contain = true;
-                    break;
-                }
-            }
-        
-            // if the element have the highest priority
-            // it is added at the end of the queue
-            if (!contain) {
-                this.items.push(qElement);
+        // creating object from queue element
+        let qElement = new QElement(element, priority);
+        let contain = false;
+    
+        // iterating through the entire
+        // item array to add element at the
+        // correct location of the Queue
+        for (let i = 0; i < this.items.length; i++) {
+            if (this.items[i].priority > qElement.priority) {
+                // Once the correct location is found it is
+                // enqueued
+                this.items.splice(i, 0, qElement);
+                contain = true;
+                break;
             }
         }
+    
+        // if the element have the highest priority
+        // it is added at the end of the queue
+        if (!contain) {
+            this.items.push(qElement);
+        }        
     }
     
     // dequeue method to remove
@@ -92,8 +89,11 @@ export class PriorityQueue {
     print()
     {
         let str = "";
-        for (let i = 0; i < this.items.length; i++)
-            str += this.items[i].element + " ";
+        for (let i = 0; i < this.items.length; i++) {
+            let item = this.items[i];
+            str += item.element + " :" + item.priority + "\n";
+        }
+
         return str;
     }
 }

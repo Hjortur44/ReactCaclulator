@@ -47,12 +47,27 @@ const App = () => {
         // when an operand is clicked right after
         // some other operand had been clicked.
 
-        //setResult(result.replace("*", ""));
-        let a = result.search(/\*/);
-        let b = result.search(/\//);
-        let c = result.search(/\+/);
-        let d = result.search(/-/);
-     
+        for(let i = 0; i < ops.length; i++){
+            let op = ops[i];
+
+            switch(op) {
+                case "*":
+                    pq.enqueue(op, 0);
+                break;
+
+                case "/":
+                    pq.enqueue(op, 1);              
+                break;
+                    
+                case "+":
+                    pq.enqueue(op, 2);        
+                break;
+                       
+                case "-":
+                    pq.enqueue(op, 3);                 
+                break;
+            }
+        }
 
         // Clear the arrays after calculation has been done.
         setNums([]);
