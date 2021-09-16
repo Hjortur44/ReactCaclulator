@@ -18,6 +18,8 @@ export class PriorityQueue {
    
     // enqueue function to add element
     // to the queue as per priority
+    // @param element array of two numbers
+    // @param priority number of priority, lower number = higher priority
     enqueue(element, priority)
     {
         // creating object from queue element
