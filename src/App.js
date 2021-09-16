@@ -27,7 +27,8 @@ const App = () => {
 
     const handleCalculate = (e) => {
         const filted = op.filter(val => Number(val));
-        calc(result.join(""), filted);
+        let res = calc(result.join(""), filted);
+        setResult(res);
     }
 
     return (
