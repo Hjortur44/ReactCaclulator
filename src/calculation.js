@@ -23,21 +23,23 @@ function numerication(equ, op) {
 
 function calculation(equ) {
     for(let i = 1; i < equ.length; i += 2) {
-       switch(equ[i]) {
+        let res = 0;
+       
+        switch(equ[i]) {            
             case "*":
-                equ[i + 1] = equ[i - 1] * equ[i + 1];
+                res = equ[i - 1] * equ[i + 1];
             break;
             
             case "/":
-                equ[i + 1] = equ[i - 1] / equ[i + 1];
+                res = equ[i - 1] / equ[i + 1];
             break;
             
             case "+":
-                equ[i + 1] = equ[i - 1] + equ[i + 1];
+                res = equ[i - 1] + equ[i + 1];
             break;
             
             case "-":
-                equ[i + 1] = equ[i - 1] - equ[i + 1];
+                res = equ[i - 1] - equ[i + 1];
             break;
             
             default:
@@ -45,7 +47,8 @@ function calculation(equ) {
        }
 
        equ[i - 1] = "" 
-       equ[i] = "";       
+       equ[i] = "";
+       equ[i + 1] = res;    
     }
 
     return equ[equ.length - 1];
