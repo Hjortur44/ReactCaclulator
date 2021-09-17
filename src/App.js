@@ -3,21 +3,21 @@ import './App.css';
 import { calc } from './calculation.js';
 
 const App = () => {
-    const [result, setResult] = useState([]);
+    const [result, setResult] = useState("");
     const [op, setOp] = useState([]);
- 
+
     const handleClick = (e) => {
-        setResult(result => [...result, e.target.value]);
+        setResult(result.concat(e.target.value));
         setOp(op => [...op, result.length]);
     }
 
     const handleNumClick = (e) => {
-        setResult(result => [...result, e.target.name]);
-        setOp(op => [...op, ""]);
+        setResult(result.concat(e.target.name));
     }
 
     const handleClear = () => {
-        setResult([]);
+        setResult("");
+        setOp([]);
     }
 
     const handleBack = () => {
@@ -25,15 +25,15 @@ const App = () => {
         setOp(op.slice(0, -1));
     }
 
-    const handleCalculate = (e) => {
-        const filted = op.filter(val => Number(val));
-        let res = calc(result.join(""), filted);
+    const handleCalculate = (e) => {        
+        let res = calc(result, op);
         setResult(res);
+        setOp([]);
     }
 
     return (
         <div classvalue="container">
-            <textarea value={result.join("")} readOnly />
+            <textarea value={result} readOnly />
 
             <div classvalue="keypad">
                 <button onClick={handleClear}>Clear</button>

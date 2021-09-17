@@ -1,8 +1,9 @@
 import { PriorityQueue } from './priorityQueue.js';
 
-export function calc(equ, op) {    
-    let n = numerication(equ, op);   
-    return calculation(n);
+export function calc(equ, op) {
+    let n = numerication(equ, op);
+    let c = String(calculation(n));
+    return c;
 }
 
 function numerication(equ, op) {
@@ -47,6 +48,6 @@ function calculation(equ) {
        equ[i] = "";       
     }
 
-    return equ;
+    return equ[equ.length - 1];
 }
 
