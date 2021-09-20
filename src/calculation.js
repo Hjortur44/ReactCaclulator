@@ -1,9 +1,9 @@
 import { PriorityQueue } from './priorityQueue.js';
 
 export function calc(equ, op) {
-    let n = numerication(equ, op);
-    let c = String(calculation(n));
-    return c;
+    let nums = numerication(equ, op);
+    let res = calculation(nums);
+    return res;
 }
 
 function numerication(equ, op) {
