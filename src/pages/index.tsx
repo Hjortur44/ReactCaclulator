@@ -1,53 +1,42 @@
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import Head from 'next/head';
 import { Layout } from '../components/layout/Layout';
 import React, { useEffect, useState } from 'react';
-import calc from './math/calculation';
+import { number, operand, back, calculate, print } from '../math/equation';
 import { Button } from '../components/button/Button';
+import { TextArea } from '../components/textarea/TextArea';
 
 function App(){
-  const [result, setResult] = useState('');
-  const [op, setOp] = useState([]);
-  const [check, setCheck] = useState(false);
+  const [result, setResult] = useState<string>('');
+  const [check, setCheck] = useState<boolean>(false);
 
+  const numButtons: Array<string> = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."];
+  const opButtons: Array<string> = ["*", "/", "+", "-"];
+  const backButton: string = "Back";
+  const clearButton: string = "Clear";
+  const equalsButton: string = "=";
+  
   useEffect(() => {
-    if (!Number(result?.charAt(result?.length - 2))) {
-      const operand = result?.charAt(result?.length - 1);
-
-      setResult(result?.slice(0, -2) + operand);
-      setOp(op?.slice(0, -1));
-    }
+    setResult(print());
   }, [check]);
 
-  const handleOpClick = () => {
-
-    /*
-    setResult(result.concat(e?.target?.name));
-    setOp((o) => [...o, result?.length]);
+  const handleNumberClick = (e: any) => {  
+    number(e.target.name);
     setCheck(!check);
-    */
   };
 
-  const handleNumClick = (e: React.ReactElement) => {
-   // setResult(result.concat(e?.target?.name));
+  const handleOperandClick = (e: any) => {
+    operand(e.target.name);
+    setCheck(!check);
   };
 
-  const handleClear = () => {
-    setResult('');
-    setOp([]);
+  const handleBackClick = () => {
+    back();
+    setCheck(!check); 
   };
 
-  const handleBack = () => {
-    setResult(result?.slice(0, -1));
-    setOp(op?.slice(0, -1));
+  const handleCalculateClick = () => {
+    setResult(calculate());
   };
-
-  const handleCalculate = () => {
-   // const res: number = calc(result, op);
-   // setResult(String(res));
-   // setOp([]);
-  };
-
 
   return (
     <Layout>
@@ -55,11 +44,20 @@ function App(){
         <title>Calculator</title>
       </Head>
     <div>
-      <textarea value={result} readOnly />
+      <TextArea value={result} />
 
-      <div>
+      {numButtons.map((button, i) => (
+        <Button key={i} name={button} onClick={handleNumberClick} />
+      ))}
 
-      </div>
+      {opButtons.map((button, i) => (
+        <Button key={i} name={button} onClick={handleOperandClick} />
+      ))}
+
+      <Button name={backButton} onClick={handleBackClick} />
+      
+
+      <Button name={equalsButton} onClick={handleCalculateClick} />  
     </div>
     </Layout>
   );

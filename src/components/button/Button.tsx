@@ -1,19 +1,19 @@
 import classnames from 'classnames';
-import s from './Button.module.scss';
+import React from 'react';
 
 type Props = {
-  children: React.ReactNode;
-  onClick: () => void;
+  name: string;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
 };
 
-export function Button({ children, onClick }: Props): JSX.Element {
+export function Button({ name, onClick }: Props): JSX.Element {
   return (
     <button
-      className={classnames(s.button)}
       type="button"
+      name={name}
       onClick={onClick}
     >
-      {children}
+      {name}
     </button>
   );
 }
