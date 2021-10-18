@@ -28,25 +28,23 @@ export function NumberPad({ onClick }: Props): JSX.Element {
         onClick(equation.print());
     }
 
-    return (  
+    return (
         <div>
             {numButtonsA.map((b, i) => (
-                <Button key={i} name={b} onClick={handleNumberClick(b)} />  
+                <Button key={i} name={b} onClick={handleNumberClick(b)} />
             ))}
 
             {numButtonsB.map((b, i) => (
-                <Button key={i} name={b} onClick={handleNumberClick(b)} />  
+                <Button key={i} name={b} onClick={handleNumberClick(b)} />
             ))}
 
             {opButtons.map((b, i) => (
-                <Button key={i} name={b} onClick={handleOperandClick(b)} />  
+                <Button key={i} name={b} onClick={handleOperandClick(b)} />
             ))}
 
             {misButtons.map((b, i) => (
-                <Button key={i} name={b} onClick={handleMiscellaneousClick(b)} />  
+                <Button key={i} name={b} onClick={handleMiscellaneousClick(b)} />
             ))}
-
-   
         </div>
     );
 }

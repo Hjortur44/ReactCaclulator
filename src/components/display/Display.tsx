@@ -4,9 +4,8 @@ type Props = {
     value: string;
 }
 
-export function TextArea({ value }: Props) : JSX.Element {   
+export function Display({ value }: Props) : JSX.Element {
     return(
         <textarea value={ value } readOnly />
     );
 }
-   
