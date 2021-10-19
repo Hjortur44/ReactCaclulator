@@ -7,8 +7,8 @@ import { NumberPad } from '../components/numberPad/NumberPad';
 function App(){
   const [result, setResult] = useState<string>("");
 
-  function buttonClick(id: string) {
-    setResult(id);
+  function buttonClick(value: string) {
+    setResult(value);
  }
 
   return (
@@ -18,7 +18,7 @@ function App(){
       </Head>
     <div>
       <Display value={result} />
-      <NumberPad onClick={buttonClick} />
+      <NumberPad value={buttonClick} />
     </div>
     </Layout>
   );

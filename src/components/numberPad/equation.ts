@@ -13,43 +13,28 @@ function clear(): void {
     _eqs = [];
 }
 
-function number(n: string): void{
-    _num = _num.concat(n);
+function equation(): Array<string> {
+    return _eqs;
 }
 
-function operand(op: string): void {
-    _op = op;
+function input(val: string): void{
+    _eqs.push(val);
 }
 
 function print(): string {
-    _flush();
     return _eqs.join("");
 }
 
 
 /// PRIVATE ///
 
-let _eqs: Array<number | string> = [];
-let _num: string = "";
-let _op: string = "";
-
-function _flush(){
-    if(_num.length > 0) {
-        _eqs.push(Number(_num));
-        _num = "";
-    }
-
-    if(_op.length !== 0) {
-        _eqs.push(_op);
-        _op = "";
-    }
-}
+let _eqs: Array<string> = [];
 
 export default {
     back,
     calculate,
     clear,
-    number,
-    operand,
+    equation,
+    input,
     print
 }
